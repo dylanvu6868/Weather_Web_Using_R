@@ -15,7 +15,7 @@ This project, **Weather Web Using R**, is a weather forecasting application buil
 ### **Prerequisites**
 Ensure you have **R** and **RStudio** installed. Also, install the required R packages:
 ```r
-install.packages(c("shiny", "httr", "jsonlite", "leaflet", "ggplot2", "plotly", "shinydashboard"))
+install.packages(c("shiny", "shinyMatrix", "tidyverse","jsonlite", "leaflet", "ggplot2", "plotly", "dplyr", "shinydashboard"))
 ```
 
 ### **Clone the Repository**
