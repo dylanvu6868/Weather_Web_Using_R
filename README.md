@@ -48,6 +48,6 @@ Feel free to fork this repository, suggest improvements, and submit pull request
 This project is licensed under the MIT License.
 
 ---
-🌦️ **Stay informed with real-time weather updates!** 🚀
-Web: https://dataexplorationdylan.shinyapps.io/Mini_Project_Weather_App_VHD_DSR301m/
+🌦️ **Website Stay informed with real-time weather updates!** 🚀
+https://dataexplorationdylan.shinyapps.io/Mini_Project_Weather_App_VHD_DSR301m/
 
