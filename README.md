@@ -27,6 +27,15 @@ cd Weather_Web_Using_R
 ### **Run the App**
 ```r
 library(shiny)
+library(leaflet)
+library(jsonlite)
+library(ggplot2)
+library(tidyverse)
+library(shinydashboard)
+library(dplyr)
+library(shinyMatrix)
+library(plotly)
+
 runApp("app.R")
 ```
 
