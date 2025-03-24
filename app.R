@@ -14,7 +14,7 @@ ui <- dashboardPage(
     title = "Weather VHD",
     tags$li(
       class = "dropdown",
-      style = "padding: 10px; font-size: 30px; color: white;",
+      style = "padding: 4px; font-size: 30px; color: white;",
       textOutput("current_time")
     )
   ),
