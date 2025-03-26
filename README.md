@@ -1,5 +1,5 @@
 # Weather Web Using R (Shiny)
-![Weather Web Using R Screenshot](Screenshot 2025-03-27 001127.png)
+<img src="Screenshot 2025-03-27 001127.png" alt="Weather Web Screenshot" width="500"/>
 ## Overview
 This project, **Weather Web Using R**, is a weather forecasting application built with **Shiny** in R. It provides real-time weather updates and a **7-day forecast** for different locations worldwide. The app features an interactive **Leaflet map** for location selection and data visualizations using **ggplot2** and **Plotly**.
 
