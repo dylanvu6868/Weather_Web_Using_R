@@ -21,7 +21,7 @@ ui <- dashboardPage(
   dashboardSidebar(
     tags$div(
       style = "text-align: center; padding: 10px;",
-      tags$p("Vũ Hải Dương", style = "font-weight: bold; font-size: 16px; margin-top: 5px;")
+      tags$p("Vũ Hải Dương", style = "font-weight: bold; font-size: 30px; margin-top: 5px;")
     ),
     sidebarMenu(
       menuItem("Weather", tabName = "weather"),
@@ -29,146 +29,193 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
+    tags$head(tags$style(HTML("
+    .main-header, .main-header .navbar {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+  color: white !important;
+  border-bottom: none !important;
+}
+
+.main-header .logo {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.main-sidebar {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+}
+
+.content-wrapper {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+}
+
+.box {
+  border-radius: 15px !important; 
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.2); 
+  overflow: hidden; 
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important; 
+  color: white !important;
+}
+
+.sidebar-menu > li.active > a {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.sidebar-menu > li:hover > a {
+  background: linear-gradient(45deg, #CDE0C9, #2C6975) !important;
+  color: white !important;
+}
+
+.sidebar-menu > li > a {
+  color: white !important;
+}
+
+.sidebar-menu {
+  border: none !important;
+}
+    "))),
     tags$style(HTML(
       '
-      .content-wrapper {
-      background-image: url("https://img.freepik.com/premium-photo/blue-sky-high-angle-air_38679-1921.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-  }
-  '
-    )),
+    .content-wrapper {
+      background: linear-gradient(45deg, #000000, #444444, #888888); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    '
+    ))
   ),
   tabItems(
     tabItem(tabName = "weather",
             fluidRow(
               column(
-                width = 6,
+                width = 12,
                 tags$div(
-                  p("Current Weather", class = "custom-text", style = "font-weight: bold;font-size:80px; color: blue;"),  # Assign a class to the entire div
-                ),
-                tags$div(
-                  style = "font-weight: bold;display: flex; align-items: center;font-size:60px;color:orange",
-                  tags$i(class = "fas fa-map-marker-alt custom-icon"),
-                  # Add a custom class to the icon
-                  tags$div(tags$span(textOutput("location"), class = "custom-text-output1")),
-                  tags$i(class = "fas fa-cloud-sun-rain custom-cloud1"),
-                ),
-                tags$div(
-                  br()
-                ),
-                tags$div(
-                  style = "font-weight: bold;display: flex; align-items: center;font-size:40px;color:green",
-                  tags$i(class = "fas fa-temperature-high custom-icon-temp"),
-                  p("Current Temperature: ", class = "custom-text-output2"),  # Assign a class to the entire div
+                  style = "display: flex; flex-direction: column; align-items: center;",
+                  
+                  # Phần thông tin thời tiết
                   tags$div(
-                    tags$span(textOutput("temperature"), class = "custom-text-temp"),
+                    class = "weather-info",
+                    style = "display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;",
+                    
+                    tags$div(
+                      p("Current Weather", class = "custom-text", 
+                        style = "font-weight: bold;font-size:90px; color: white; text-align: center;")
+                    ),
+                    
+                    tags$div(
+                      style = "font-weight: bold;display: flex; align-items: center;font-size:70px;color:white",
+                      tags$i(class = "fas fa-map-marker-alt custom-icon"),
+                      tags$div(tags$span(textOutput("location"), class = "custom-text-output1")),
+                      tags$i(class = "fas fa-cloud-sun-rain custom-cloud1"),
+                    ),
+                    
+                    tags$div(
+                      style = "font-weight: bold;display: flex; align-items: center;font-size:50px;color:white",
+                      tags$i(class = "fas fa-temperature-high custom-icon-temp"),
+                      p("Current Temperature: ", class = "custom-text-output2"),
+                      tags$div(tags$span(textOutput("temperature"), class = "custom-text-temp")),
+                    ),
+                    
+                    # Các box thông tin
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fa-solid fa-droplet box-icon"), "Humidity"),
+                      textOutput("humidity"),
+                      background = "aqua"
+                    ),
+                    
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fas fa-temperature-high box-icon"), "Feels Like"),
+                      textOutput("feels_like"),
+                      background = "red"
+                    ),
+                    
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fas fa-smog box-icon"), "Weather Condition"),
+                      textOutput("weather_condition"),
+                      background = "olive"
+                    ),
+                    
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fas fa-eye box-icon"), "Visibility"),
+                      textOutput("visibility"),
+                      background = "teal"
+                    ),
+                    
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fas fa-wind box-icon"), "Wind Speed"),
+                      textOutput("wind_speed"),
+                      background = "navy"
+                    ),
+                    
+                    box(
+                      width = 4,
+                      style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
+                      title = div(tags$i(class = "fas fa-globe-americas box-icon"), "Air Pressure"),
+                      textOutput("air_pressure"),
+                      background = "maroon"
+                    )
                   ),
-                ),
-                tags$div(
-                  br()
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fa-solid fa-droplet box-icon"), 
-                    "Humidity"
-                  ),
-                  textOutput("humidity"),
-                  background = "aqua"  # Set a red background color
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fas fa-temperature-high box-icon"), 
-                    "Feels Like"
-                  ),
-                  textOutput("feels_like"),
-                  background = "red"  # Set an orange background color
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fas fa-smog box-icon"), 
-                    "Weather Condition"
-                  ),
-                  textOutput("weather_condition"),
-                  background = "olive"  # Set a pink background color
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fas fa-eye box-icon"), 
-                    "Visibility"
-                  ),
-                  textOutput("visibility"),
-                  background = "teal"  # Set a gray background color
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fas fa-wind box-icon"), 
-                    "Wind Speed"
-                  ),
-                  textOutput("wind_speed"),
-                  background = "navy"  # Set a yellow background color
-                ),
-                box(
-                  width = 6,
-                  style = "font-size:34px; text-align: center; font-family: 'Poppins', sans-serif;",
-                  title = div(
-                    tags$i(class = "fas fa-globe-americas box-icon"), 
-                    "Air Pressure"
-                  ),
-                  textOutput("air_pressure"),
-                  background = "maroon"  # Set a yellow background color
+                  
+                  # Phần bản đồ bên dưới
+                  tags$div(
+                    class = "map-container",
+                    style = "margin-top: 40px; width: 100%; display: flex; justify-content: center;",
+                    box(
+                      width = 10,
+                      leafletOutput("map")
+                    )
+                  )
                 )
-              ),
-              tags$div(
-                box(
-                  width = 10,
-                  leafletOutput("map"),
-                  class = 'map-container'
-                ),
-                style = "display: flex; justify-content: center; align-items: center; height: 100vh;"
-              ))
+              )
+            )
     ),
     tabItem(
       tabName = "forecast",
       tags$div(
-        style = "display: flex; align-items: center;font-size:40px; text-align: center; font-family: 'Poppins', sans-serif;",
+        style = "display: flex; align-items: center;font-size:40px; text-align: center; font-family: 'Poppins', sans-serif;color:white",
         tags$i(class = "fas fa-map-marker-alt custom-icon-fc"),
         tags$div(textOutput("location_")),
       ),
       # Add forecast content here
       
-      column(width=6,
-             box(
-               selectInput(
-                 "feature",
-                 "Features:",
-                 list(
-                   "temp",
-                   "feels_like",
-                   "temp_min",
-                   "temp_max",
-                   "pressure",
-                   "sea_level",
-                   "grnd_level",
-                   "humidity",
-                   "speed",
-                   "deg",
-                   "gust")
-               ),
-               class = "box-fc")),
-      box(plotlyOutput("line_chart"),class = "chart"),
+      box(width = 13,
+        radioButtons(
+          inputId = "feature",
+          label = tags$span("Choose options:", style = "font-size: 24px; font-weight: bold;"),
+          choices = c(
+            "Temperature" = "temp",
+            "Feels Like" = "feels_like",
+            "Min Temp" = "temp_min",
+            "Max Temp" = "temp_max",
+            "Pressure" = "pressure",
+            "Sea Level" = "sea_level",
+            "Ground Level" = "grnd_level",
+            "Humidity" = "humidity",
+            "Wind Speed" = "speed",
+            "Wind Degree" = "deg",
+            "Wind Gust" = "gust"
+          ),
+          selected = "temp",
+          inline = TRUE
+        ),
+        style = "text-align: center; font-size: 22px; font-weight: bold;",
+        class = "box-fc"
+      ),
+      box(plotlyOutput("line_chart"),class = "chart", width="100"),
     )
   )
   )
@@ -246,7 +293,7 @@ server <- function(input, output, session) {
     autoInvalidate()  # Cập nhật lại mỗi giây
     format(Sys.time(), "%Y-%m-%d %H:%M:%S")  # Hiển thị ngày & giờ
   })
-
+  
   # Set default coordinates
   default_lat <- 21.0277644
   default_lon <- 105.8341598
@@ -340,15 +387,15 @@ server <- function(input, output, session) {
           yaxis = list(title = input$feature)
         ) %>%
         add_trace(
-          line = list(color = "red"),  # Set the line color to red
-          marker = list(color = "black"),  # Set the marker color to black
+          line = list(color = "green"),  # Set the line color to red
+          marker = list(color = "red"),  # Set the marker color to black
           showlegend = FALSE  # Hide the legend for this trace
         )
     })
     
     # plot the forecast
     if (!is.null(click)) {
-      data <- get_forecast(click$lat, click$lng)
+      data <- get_forecast(clicklat,clicklat, clicklng)
       #dat <- data.frame(df[input$feature])
       #names(dat) <- c(input$feature)
       #row.names(dat) <- df$Time
@@ -377,4 +424,3 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
